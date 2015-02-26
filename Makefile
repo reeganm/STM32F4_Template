@@ -1,6 +1,22 @@
 ###
 # Purpose: to create a bare-metal project with mbed SDK.
 
+# STM32F4 library code directory
+STM_COMMON=~/STM32F4-Discovery_FW_V1.1.0
+
+# Library code
+STDPERIPH_LIB=$(STM_COMMON)/Libraries/STM32F4xx_StdPeriph_Driver/src
+CSOURCES+=$(STM_COMMON)/Utilities/STM32F4-Discovery/stm32f4_discovery.c
+
+CSOURCES+=$(STDPERIPH_LIB)/stm32f4xx_exti.c
+CSOURCES+=$(STDPERIPH_LIB)/stm32f4xx_gpio.c
+CSOURCES+=$(STDPERIPH_LIB)/stm32f4xx_rcc.c
+CSOURCES+=$(STDPERIPH_LIB)/stm32f4xx_syscfg.c
+CSOURCES+=$(STDPERIPH_LIB)/misc.c
+
+# add startup file to build
+ASOURCES+=$(STM_COMMON)/Libraries/CMSIS/ST/STM32F4xx/Source/Templates/gcc_ride7/startup_stm32f4xx.s
+
 ###
 # GNU ARM Embedded Toolchain
 CC=arm-none-eabi-gcc
@@ -22,8 +38,8 @@ SRCDIR=src
 
 ###
 # Find source files
-ASOURCES=$(shell find -L $(SRCDIR) -name '*.s')
-CSOURCES=$(shell find -L $(SRCDIR) -name '*.c')
+ASOURCES+=$(shell find -L $(SRCDIR) -name '*.s')
+CSOURCES+=$(shell find -L $(SRCDIR) -name '*.c')
 CXXSOURCES=$(shell find -L $(SRCDIR) -name '*.cpp')
 # Find header directories
 INC=$(shell find -L $(INCDIR) -name '*.h' -exec dirname {} \; | uniq)
