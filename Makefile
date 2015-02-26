@@ -5,14 +5,14 @@
 STM_COMMON=~/STM32F4-Discovery_FW_V1.1.0
 
 # Library code
-STDPERIPH_LIB=$(STM_COMMON)/Libraries/STM32F4xx_StdPeriph_Driver/src
+STDPERIPH_C=$(STM_COMMON)/Libraries/STM32F4xx_StdPeriph_Driver/src
 CSOURCES+=$(STM_COMMON)/Utilities/STM32F4-Discovery/stm32f4_discovery.c
 
-CSOURCES+=$(STDPERIPH_LIB)/stm32f4xx_exti.c
-CSOURCES+=$(STDPERIPH_LIB)/stm32f4xx_gpio.c
-CSOURCES+=$(STDPERIPH_LIB)/stm32f4xx_rcc.c
-CSOURCES+=$(STDPERIPH_LIB)/stm32f4xx_syscfg.c
-CSOURCES+=$(STDPERIPH_LIB)/misc.c
+CSOURCES+=$(STDPERIPH_C)/stm32f4xx_exti.c
+CSOURCES+=$(STDPERIPH_C)/stm32f4xx_gpio.c
+CSOURCES+=$(STDPERIPH_C)/stm32f4xx_rcc.c
+CSOURCES+=$(STDPERIPH_C)/stm32f4xx_syscfg.c
+CSOURCES+=$(STDPERIPH_C)/misc.c
 
 # add startup file to build
 ASOURCES+=$(STM_COMMON)/Libraries/CMSIS/ST/STM32F4xx/Source/Templates/gcc_ride7/startup_stm32f4xx.s
