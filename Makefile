@@ -2,7 +2,7 @@
 # Purpose: to create a bare-metal project with mbed SDK.
 
 # STM32F4 library code directory
-STM_COMMON=~/STM32F4-Discovery_FW_V1.1.0
+STM_COMMON=../STM32F4-Discovery_FW_V1.1.0
 
 # Library code
 STDPERIPH_C=$(STM_COMMON)/Libraries/STM32F4xx_StdPeriph_Driver/src
@@ -13,6 +13,9 @@ CSOURCES+=$(STDPERIPH_C)/stm32f4xx_gpio.c
 CSOURCES+=$(STDPERIPH_C)/stm32f4xx_rcc.c
 CSOURCES+=$(STDPERIPH_C)/stm32f4xx_syscfg.c
 CSOURCES+=$(STDPERIPH_C)/misc.c
+
+# DONT CHANGE ANYTHING BEYOND THIS POINT
+###############################################################
 
 # add startup file to build
 ASOURCES+=$(STM_COMMON)/Libraries/CMSIS/ST/STM32F4xx/Source/Templates/gcc_ride7/startup_stm32f4xx.s
@@ -43,6 +46,12 @@ CSOURCES+=$(shell find -L $(SRCDIR) -name '*.c')
 CXXSOURCES=$(shell find -L $(SRCDIR) -name '*.cpp')
 # Find header directories
 INC=$(shell find -L $(INCDIR) -name '*.h' -exec dirname {} \; | uniq)
+# STM32F4 Headers
+INC+=$(STM_COMMON)/Libraries/CMSIS/Include
+INC+=$(STM_COMMON)/Libraries/CMSIS/ST/STM32F4xx/Include
+INC+=$(STM_COMMON)/Utilities/STM32F4-Discovery
+INC+=$(STM_COMMON)/Libraries/STM32F4xx_StdPeriph_Driver/inc
+# Make Includes
 INCLUDES=$(INC:%=-I%)
 # Find libraries
 INCLUDES_LIBS=
